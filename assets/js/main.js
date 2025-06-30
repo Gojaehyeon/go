@@ -1,303 +1,239 @@
-'use strict';
+/*
+	Introspect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+*/
 
-(function () {
-"use strict";
+(function($) {
 
-/**
-   * [isMobile description]
-   * @type {Object}
-   */
+	skel.breakpoints({
+		xlarge:	'(max-width: 1680px)',
+		large:	'(max-width: 1280px)',
+		medium:	'(max-width: 980px)',
+		small:	'(max-width: 736px)',
+		xsmall:	'(max-width: 480px)'
+	});
 
-window.isMobile = {
-	Android: function Android() {
-		return navigator.userAgent.match(/Android/i);
-	},
-	BlackBerry: function BlackBerry() {
-		return navigator.userAgent.match(/BlackBerry/i);
-	},
-	iOS: function iOS() {
-		return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-	},
-	Opera: function Opera() {
-		return navigator.userAgent.match(/Opera Mini/i);
-	},
-	Windows: function Windows() {
-		return navigator.userAgent.match(/IEMobile/i);
-	},
-	any: function any() {
-		return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
-	}
+	$(function() {
+
+		var	$window = $(window),
+			$body = $('body');
+
+		// Disable animations/transitions until the page has loaded.
+			$body.addClass('is-loading');
+
+			$window.on('load', function() {
+				window.setTimeout(function() {
+					$body.removeClass('is-loading');
+				}, 100);
+			});
+
+		// Fix: Placeholder polyfill.
+			$('form').placeholder();
+
+		// Prioritize "important" elements on medium.
+			skel.on('+medium -medium', function() {
+				$.prioritize(
+					'.important\\28 medium\\29',
+					skel.breakpoint('medium').active
+				);
+			});
+
+		// Off-Canvas Navigation.
+
+			// Navigation Panel Toggle.
+				$('<a href="#navPanel" class="navPanelToggle"></a>')
+					.appendTo($body);
+
+			// Navigation Panel.
+				$(
+					'<div id="navPanel">' +
+						$('#nav').html() +
+						'<a href="#navPanel" class="close"></a>' +
+					'</div>'
+				)
+					.appendTo($body)
+					.panel({
+						delay: 500,
+						hideOnClick: true,
+						hideOnSwipe: true,
+						resetScroll: true,
+						resetForms: true,
+						side: 'left'
+					});
+
+			// Fix: Remove transitions on WP<10 (poor/buggy performance).
+				if (skel.vars.os == 'wp' && skel.vars.osVersion < 10)
+					$('#navPanel')
+						.css('transition', 'none');
+
+	});
+
+})(jQuery);
+
+
+console.clear();
+
+const cardsContainer = document.querySelector(".cards");
+const cardsContainerInner = document.querySelector(".cards__inner");
+const cards = Array.from(document.querySelectorAll(".card"));
+const overlay = document.querySelector(".overlay");
+
+const applyOverlayMask = (e) => {
+  const overlayEl = e.currentTarget;
+  const x = e.pageX - cardsContainer.offsetLeft;
+  const y = e.pageY - cardsContainer.offsetTop;
+
+  overlayEl.style = `--opacity: 1; --x: ${x}px; --y:${y}px;`;
 };
-window.isIE = /(MSIE|Trident\/|Edge\/)/i.test(navigator.userAgent);
-window.windowHeight = window.innerHeight;
-window.windowWidth = window.innerWidth;
 
-/**
-   * Match height 
-   */
-$('.row-eq-height > [class*="col-"]').matchHeight();
+const createOverlayCta = (overlayCard, ctaEl) => {
+  const overlayCta = document.createElement("div");
+  overlayCta.classList.add("cta");
+  overlayCta.textContent = ctaEl.textContent;
+  overlayCta.setAttribute("aria-hidden", true);
+  overlayCard.append(overlayCta);
+};
 
-var myEfficientFn = debounce(function () {
-	$('.row-eq-height > [class*="col-"]').matchHeight();
-}, 250);
+const observer = new ResizeObserver((entries) => {
+  entries.forEach((entry) => {
+    const cardIndex = cards.indexOf(entry.target);
+    let width = entry.borderBoxSize[0].inlineSize;
+    let height = entry.borderBoxSize[0].blockSize;
 
-window.addEventListener('resize', myEfficientFn);
+    if (cardIndex >= 0) {
+      overlay.children[cardIndex].style.width = `${width}px`;
+      overlay.children[cardIndex].style.height = `${height}px`;
+    }
+  });
+});
 
-/**
-   * [debounce description]
-   * @param  {[type]} func      [description]
-   * @param  {[type]} wait      [description]
-   * @param  {[type]} immediate [description]
-   * @return {[type]}           [description]
-   */
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function () {
-		var context = this,
-			    args = arguments;
-		var later = function later() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
+const initOverlayCard = (cardEl) => {
+  const overlayCard = document.createElement("div");
+  overlayCard.classList.add("card");
+  createOverlayCta(overlayCard, cardEl.lastElementChild);
+  overlay.append(overlayCard);
+  observer.observe(cardEl);
+};
+
+cards.forEach(initOverlayCard);
+document.body.addEventListener("pointermove", applyOverlayMask);
+
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     setTimeout(function() {
+//         var loading = document.getElementById('loading');
+//         // 로딩 페이지 쓸어 올림
+//         loading.style.transform = 'translateY(-100%)';
+
+//         // 로딩 페이지 애니메이션 끝나는 것을 감지
+//         loading.addEventListener('transitionend', function() {
+//             // 메인 컨텐츠의 투명도를 점차 증가
+//             var content = document.getElementById('content');
+//             content.style.opacity = '1';
+//         });
+//     }, 2000); // 로딩 페이지 표시 시간
+// });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 로컬 스토리지에서 'visited' 키를 확인
+    var visited = localStorage.getItem('visited');
+
+    // 로딩 시간을 설정 (방문했을 경우 0초, 처음 방문 시 2000ms)
+    var loadingTime = visited ? 500 : 2000;
+
+    // 로딩 페이지를 보이게 설정
+    document.getElementById('loading').style.display = 'flex';
+
+    // 설정된 로딩 시간 후 로딩 페이지를 숨기고 메인 컨텐츠 표시
+    setTimeout(function() {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+
+        // 처음 방문한 경우에만 로컬 스토리지에 'visited' 저장
+        if (!visited) {
+            localStorage.setItem('visited', true);
+        }
+    }, loadingTime);
+});
+
+
+
+
+const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+if (mediaQuery && !mediaQuery.matches) {
+	const tagScroller = document.querySelector(".tag-scroller");
+	const allTags = tagScroller.querySelectorAll("li");
+	
+	function createElement(tagName, className = "") {
+		const elem = document.createElement(tagName);
+		elem.className = className;
+		return elem;
+	}
+
+	function scrollersFrom(elements, numColumns = 2) {
+		const fragment = new DocumentFragment();
+		elements.forEach((element, i) => {
+			const column = i % numColumns;
+			const children = fragment.children;
+			if (!children[column]) fragment.appendChild(createElement("ul", "tag-list"));
+			children[column].appendChild(element);
+		});
+		return fragment;
+	}
+	
+	/*	SPLIT THE LIST ELEMENT INTO TWO LISTS
+			AND CALL THE ANIMATION
+	*/
+	const scrollers = scrollersFrom(allTags, 2);
+	tagScroller.innerHTML = "";
+	tagScroller.appendChild(scrollers);
+	addScrolling();
+
+	/*	ADD scrolling CLASS TO THE WRAPPER ELEMENT,
+			CLONE EACH LIST ITEM TO MAKE THE LIST LONG ENOUGH
+			FOR INFINITE SCROLL AND THEN CALCULATE THE DURATION
+			BASED ON WIDTH OF EACH SCROLLER TO MAKE THEM
+			MOVE AT THE SAME RATE OF SPEED
+			
+			DEPENDING ON THE WIDTH OF .tag-scrollers, THE NUMBER OF
+			LIST ITEMS AND THEIR INDIVIDUAL WIDTH, YOU MIGHT NEED
+			TO CLONE THEM TWO TIMES EACH TO BE SURE EACH .tag-scroller
+			WILL BE WIDE ENOUGH TO SUPPORT INFINITE SCROLL
+			
+			THIS COULD OF COURSE BE ADDED TO THE SCRIPT
+			BUT FOR OUR USE CASE, WE KNOW THE MINIMUM NUMBER OF
+			LIST ELEMENTS WILL BE ENOUGH FOR ONE CLONE EACH
+	*/
+	function addScrolling() {
+		tagScroller.classList.add("scrolling");
+		document.querySelectorAll(".tag-list").forEach((tagList) => {
+			const scrollContent = Array.from(tagList.children);
+			scrollContent.forEach((listItem) => {
+				const clonedItem = listItem.cloneNode(true);
+				clonedItem.setAttribute("aria-hidden", true);
+				tagList.appendChild(clonedItem);
+			});
+			tagList.style.setProperty("--duration", (tagList.clientWidth / 100) + "s");
+		});
+	}
 }
 
-/**
-   * Fullscreen menu
-   */
-$('.fullscreenmenu__module').each(function () {
-	var self = $(this),
-		    triggerID = self.attr('trigger');
 
-	self.on("click", function () {
-		$(triggerID).toggleClass('open');
-		$(this).toggleClass('open');
-	});
-	$(triggerID).on("click", function () {
-		$(triggerID).toggleClass('open');
-		self.toggleClass('open');
-	});
+document.getElementById('musicLink').addEventListener('click', function(event) {
+    event.preventDefault(); // 기본 동작 방지
+    var music = document.getElementById('backgroundMusic');
+    if (music.paused) {
+        music.play();
+        this.textContent = 'stop'; // 텍스트를 'stop'으로 변경
+        this.classList.add('active'); // 동적 효과 추가
+    } else {
+        music.pause();
+        music.currentTime = 0; // 음악을 처음부터 다시 재생
+        this.textContent = 'play'; // 텍스트를 'play'로 변경
+        this.classList.remove('active'); // 동적 효과 제거
+    }
 });
 
-/**
-   * Masonry
-   */
-$('.grid__inner').masonry({
-	itemSelector: '.grid-item',
-	columnWidth: '.grid-sizer'
-});
 
-/**
-   * grid css
-   */
-
-$.fn.reCalWidth = function () {
-	var $self = $(this);
-	$self.on('reCalWidth', function () {
-		var _self = $(this);
-		_self.css('width', '');
-		var width = Math.floor(_self.width());
-		_self.css('width', width + 'px');
-		var height = Math.floor(_self.parent().children('.wide').width() / 2);
-		_self.parent().children('.wide').css('height', height + 'px');
-	});
-	$(window).on('resize', function () {
-		$self.trigger('reCalWidth');
-	});
-};
-function work() {
-	$('.grid-css').each(function () {
-		var workWrapper = $(this),
-			    workContainer = $('.grid__inner', workWrapper),
-			    filters = $('.filter', workWrapper),
-			    filterCurrent = $('.current a', filters),
-			    filterLiCurrent = $('.current', filters),
-			    duration = 0.3;
-		workContainer.imagesLoaded(function () {
-
-			// Fix Height
-			if (workWrapper.hasClass('grid-css--fixheight')) {
-				workContainer.find('.grid-item__content-wrapper').matchHeight();
-			}
-
-			workContainer.isotope({
-				layoutMode: 'masonry',
-				itemSelector: '.grid-item',
-				transitionDuration: duration + 's',
-				masonry: {
-					columnWidth: '.grid-sizer'
-					// hiddenStyle: {},
-					// visibleStyle: {}
-				} });
-		});
-		filters.on('click', 'a', function (e) {
-			e.preventDefault();
-			var $el = $(this);
-			var selector = $el.attr('data-filter');
-			filters.find('.current').removeClass('current');
-			$el.parent().addClass('current');
-			workContainer.isotope({
-				filter: selector
-			});
-		});
-
-		filters.find('.select-filter').change(function () {
-			var $el = $(this);
-			var selector = $el.val();
-			workContainer.isotope({
-				filter: selector
-			});
-		});
-
-		$('.grid-item', workWrapper).reCalWidth();
-	});
-}
-work();
-
-$('.ef-hoverdir').each(function () {
-	$(this).hoverdir({
-		speed: 300,
-		easing: 'ease',
-		hoverDelay: 40
-	});
-});
-
-/**
-   * ProgressBar
-   */
-var progress = $('.progress');
-
-progress.each(function () {
-
-	var _self = $(this);
-	var progressNumber = _self.find('.progress__number');
-	progressNumber.text('0%');
-
-	_self.waypoint(function (direction) {
-		var progressBar = _self.find('.progress__bar'),
-			    delay = progressBar.data("delay"),
-			    durations = progressBar.data("duration"),
-			    timing = progressBar.data("timing"),
-			    getPercent = progressBar.data('progress-percent');
-
-		console.log(durations);
-
-		progressBar.css({
-			'width': getPercent + '%',
-			'transition': 'all ' + durations + 'ms ' + timing,
-			'transition-delay': delay + 'ms'
-		});
-
-		setTimeout(function () {
-			progressNumber.prop('Counter', 0).animate({
-				Counter: getPercent
-			}, {
-				duration: durations,
-				easing: 'swing',
-				step: function step(now) {
-					$(this).text(Math.ceil(now) + '%');
-				}
-			});
-		}, delay);
-
-		this.destroy();
-	}, {
-		offset: function offset() {
-			return Waypoint.viewportHeight() - _self.outerHeight() - 150;
-		}
-	});
-});
-
-/**
-   * Typing effect
-   */
-$('.typing__module').each(function (index) {
-	var self = $(this),
-		    _wrapper = $('.typed', self)[0],
-		    optData = eval('(' + self.attr('data-options') + ')'),
-		    optDefault = {
-		stringsElement: self.find('.typed-strings')[0],
-		typeSpeed: 50,
-		backSpeed: 500,
-		fadeOut: true,
-		loop: true
-	},
-		    options = $.extend(optDefault, optData);
-	var typed = new Typed(_wrapper, options);
-});
-
-/**
-  * Footer
-  */
-
-$('#back-to-top').on('click', function (e) {
-	e.preventDefault();
-	$('html,body').animate({
-		scrollTop: 0
-	}, 700);
-});
-//*
-// Header
-//*
-
-
-var wh = $(window).height(),
-	    half = wh / 5,
-	    headerHeight = $('header').outerHeight();
-
-$(window).scroll(function () {
-	var scrollTop = $(window).scrollTop();
-
-	if (scrollTop >= half) {
-		$('header').addClass('is-scroll');
-	} else {
-		$('header').removeClass('is-scroll');
-	}
-});
-
-$('.onepage-nav').dropdownMenu({
-	menuClass: 'onepage-menu',
-	breakpoint: 1200,
-	toggleClass: 'active',
-	classButtonToggle: 'navbar-toggle',
-	subMenu: {
-		class: 'sub-menu',
-		parentClass: 'menu-item-has-children',
-		toggleClass: 'active'
-	}
-});
-
-$('.onepage-nav').onePageNav({
-	currentClass: 'current-menu-item',
-	scrollOffset: headerHeight
-});
-
-//*
-// Back to top
-//*
-
-$(window).scroll(function () {
-	var wh = $(window).height(),
-		    scrollTop = $(window).scrollTop();
-
-	if (scrollTop >= wh) {
-		$('#back-to-top').addClass('is-visible');
-	} else {
-		$('#back-to-top').removeClass('is-visible');
-	}
-});
-
-var headerHeight = $('header').outerHeight();
-
-$('#back-to-down').on('click', function () {
-	var offsets = $(this).closest('.hero').next().offset().top - headerHeight;
-
-	$('html,body').animate({
-		scrollTop: offsets
-	}, 700);
-});
-})();
