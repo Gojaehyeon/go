@@ -135,9 +135,9 @@ export default function Home() {
           Experience Designer /<span className='max-[430px]:block hidden'></span> Web, App Developer
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-xl">
-          From furniture design to<br className='max-[430px]:block hidden' /> graphic, web, UX, and development.<br className='max-[430px]:block hidden' />
-          <span className='max-[430px]:block hidden'></span>Designing the best experiences.<br className='max-[430px]:block hidden' />
-          Released 11 apps.<br className='max-[430px]:block hidden' />
+          From furniture design to graphic, web, UX, and development.<br />
+          Designing the best experiences.<br />
+          Released 11 apps.<br />
           Currently at Apple Developer Academy.
         </p>
       </section>
@@ -152,7 +152,7 @@ export default function Home() {
             <img
               src={app.img}
               alt={app.name}
-              className={`w-32 h-32 max-[430px]:w-[72px] max-[430px]:h-[72px] object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'} max-[430px]:mx-auto max-[430px]:rounded-xl`}
+              className={`w-32 h-32 max-[430px]:w-[88px] max-[430px]:h-[88px] object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'} max-[430px]:mx-auto max-[430px]:rounded-xl`}
             />
             <div className="text-left max-[430px]:text-center">
               <div className="text-3xl font-bold text-white mb-4">{app.name}</div>
