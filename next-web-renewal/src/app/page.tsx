@@ -1,136 +1,103 @@
-"use client";
-
-import React from 'react';
-
-const imageIcons = [
-  "batterygo.png",
-  "clipgo.png",
-  "displaygo.png",
-  "foldergo.png",
-  "sharego.png",
-  "takeagain.jpg",
-  "dodot.png",
-  "letgo.jpg",
-  "refreshgo.jpg",
-];
-
-const apps = [
-  {
-    name: "BatteryGO",
-    desc: "A simple and beautiful battery status app for Mac. Monitor your battery status at a glance.",
-    url: "https://apps.apple.com/us/app/batterygo/id6747229304?l=en-GB&mt=12",
-    img: "/images/batterygo.png",
-  },
-  {
-    name: "ClipGO",
-    desc: "A smart clipboard manager that helps you organize and quickly access your copied items.",
-    url: "https://apps.apple.com/kr/app/clipgo/idYOUR_APP_ID",
-    img: "/images/clipgo.png",
-  },
-  {
-    name: "DisplayGO",
-    desc: "A display management tool for Mac. Easily control and arrange your external displays.",
-    url: "https://apps.apple.com/kr/app/displaygo/id6746069948?l=en-GB&mt=12",
-    img: "/images/displaygo.png",
-  },
-  {
-    name: "FolderGO",
-    desc: "Organize and manage your folders efficiently on Mac with FolderGO.",
-    url: "https://apps.apple.com/kr/app/foldergo/id6747735485?l=en-GB&mt=12",
-    img: "/images/foldergo.png",
-  },
-  {
-    name: "ShareGO",
-    desc: "A seamless sharing utility to quickly send files and links between your devices.",
-    url: "https://apps.apple.com/kr/app/sharego/idYOUR_APP_ID",
-    img: "/images/sharego.png",
-  },
-  // iOS Apps
-  {
-    name: "Takeagain",
-    desc: "Minimal video camera for quick retakes. Instantly save or retake with a simple UI.",
-    url: "https://apps.apple.com/kr/app/takeagain/id6745813619?l=en-GB",
-    img: "/images/takeagain.jpg",
-  },
-  {
-    name: "Dodot",
-    desc: "Goal-based routine & to-do manager. Build habits and track your progress.",
-    url: "https://apps.apple.com/kr/app/%EB%91%90%EB%8B%B7/id6744737392?l=en-GB",
-    img: "/images/dodot.png",
-  },
-  {
-    name: "LetGo",
-    desc: "Minimal writing app for building a writing habit. Distraction-free and easy to use.",
-    url: "https://apps.apple.com/kr/app/letgo/id6746320131?l=en-GB",
-    img: "/images/letgo.jpg",
-  },
-  {
-    name: "RefreshGO",
-    desc: "Wellness app to refresh your mind and body. Track routines and build healthy habits.",
-    url: "https://apps.apple.com/kr/app/refreshgo/id6745421205?l=en-GB",
-    img: "/images/refreshgo.jpg",
-  },
-];
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center gap-16 py-16">
-      {/* App icons row */}
-      <div className="flex flex-row flex-wrap justify-center gap-8 mb-6">
-        {imageIcons.slice(0, 5).map((img) => (
-          <img
-            key={img}
-            src={`/images/${img}`}
-            alt={img}
-            width={120}
-            height={120}
-            className="rounded-2xl shadow-md object-cover transition-transform duration-200 hover:scale-110"
-          />
-        ))}
-        <div className="w-full h-0" />
-        {imageIcons.slice(5).map((img) => (
-          <img
-            key={img}
-            src={`/images/${img}`}
-            alt={img}
-            width={120}
-            height={120}
-            className="rounded-3xl shadow-md object-cover transition-transform duration-200 hover:scale-110"
-          />
-        ))}
-      </div>
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={180}
+          height={38}
+          priority
+        />
+        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+          <li className="mb-2 tracking-[-.01em]">
+            Get started by editing{" "}
+            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
+              src/app/page.tsx
+            </code>
+            .
+          </li>
+          <li className="tracking-[-.01em]">
+            Save and see your changes instantly.
+          </li>
+        </ol>
 
-      {/* Hero */}
-      <section className="flex flex-col items-center gap-4">
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-center">GO JAEHYUN</h1>
-        <h2 className="text-xl sm:text-2xl text-blue-600 font-semibold mb-2">Experience Designer / Web, App Developer</h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-xl">
-          From furniture design to graphic, web, UX, and development.<br />
-          Designing the best experiences.<br />
-          Released 11 apps. Currently at Apple Developer Academy.
-        </p>
-      </section>
-
-      {/* Project cards section */}
-      <section className="w-full max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        {apps.map((app, idx) => (
-          <div
-            key={app.name}
-            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-12 min-h-[320px] shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)]"
+        <div className="flex gap-4 items-center flex-col sm:flex-row">
+          <a
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <img
-              src={app.img}
-              alt={app.name}
-              className={`w-32 h-32 object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'}`}
+            <Image
+              className="dark:invert"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={20}
+              height={20}
             />
-            <div>
-              <div className="text-3xl font-bold text-white mb-4">{app.name}</div>
-              <div className="text-gray-300 text-xl mb-4">{app.desc}</div>
-              {/* App Store/Product Hunt badges can be added here if needed */}
-            </div>
-          </div>
-        ))}
-      </section>
+            Deploy now
+          </a>
+          <a
+            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read our docs
+          </a>
+        </div>
+      </main>
+      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/file.svg"
+            alt="File icon"
+            width={16}
+            height={16}
+          />
+          Learn
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/window.svg"
+            alt="Window icon"
+            width={16}
+            height={16}
+          />
+          Examples
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Go to nextjs.org →
+        </a>
+      </footer>
     </div>
   );
-} 
+}
