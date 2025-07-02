@@ -104,15 +104,15 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center gap-16 py-16">
       {/* App icons row */}
-      <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-8 mb-6 w-full max-w-xs sm:max-w-none mx-auto">
+      <div className="flex flex-row flex-wrap justify-center gap-8 max-[430px]:gap-4 mb-6 w-full max-w-none max-[430px]:max-w-xs max-[430px]:mx-auto">
         {imageIcons.slice(0, 5).map((img) => (
           <img
             key={img}
             src={`/images/${img}`}
             alt={img}
-            width={80}
-            height={80}
-            className="rounded-2xl shadow-md object-cover transition-transform duration-75 hover:scale-110 w-16 h-16 sm:w-24 sm:h-24 mx-auto"
+            width={120}
+            height={120}
+            className="rounded-2xl shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-16 max-[430px]:h-16 max-[430px]:mx-auto"
           />
         ))}
         <div className="w-full h-0" />
@@ -121,9 +121,9 @@ export default function Home() {
             key={img}
             src={`/images/${img}`}
             alt={img}
-            width={80}
-            height={80}
-            className="rounded-3xl shadow-md object-cover transition-transform duration-75 hover:scale-110 w-16 h-16 sm:w-24 sm:h-24 mx-auto"
+            width={120}
+            height={120}
+            className="rounded-3xl shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-16 max-[430px]:h-16 max-[430px]:mx-auto"
           />
         ))}
       </div>
@@ -144,12 +144,12 @@ export default function Home() {
         {apps.map((app, idx) => (
           <div
             key={app.name}
-            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-6 sm:p-12 min-h-[240px] sm:min-h-[320px] shadow-2xl transition-transform duration-75 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)] w-full max-w-xs sm:max-w-none mx-auto"
+            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-12 min-h-[320px] shadow-2xl transition-transform duration-75 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)] w-full max-w-none max-[430px]:max-w-xs max-[430px]:mx-auto"
           >
             <img
               src={app.img}
               alt={app.name}
-              className={`w-20 h-20 sm:w-32 sm:h-32 object-cover mb-6 md:mb-0 md:mr-12 mx-auto ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'}`}
+              className={`w-32 h-32 max-[430px]:w-20 max-[430px]:h-20 object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'} max-[430px]:mx-auto`}
             />
             <div>
               <div className="text-3xl font-bold text-white mb-4">{app.name}</div>
