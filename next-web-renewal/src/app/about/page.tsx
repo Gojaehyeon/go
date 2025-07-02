@@ -7,8 +7,8 @@ export default function About() {
       <img src="/images/go.png" alt="Go Jaehyun Logo" className="w-36 h-36 rounded-full object-cover mx-auto mb-4" />
       <div className="max-w-2xl text-lg text-center text-gray-700 dark:text-gray-300">
         <p className="mb-4">
-          Hello, I'm <b>Go Jaehyun</b>.<br />
-          I'm an experience designer who started in furniture design<br className='max-[430px]:block hidden' />
+          Hello, I&apos;m <b>Go Jaehyun</b>.<br />
+          I&apos;m an experience designer who started in furniture design<br className='max-[430px]:block hidden' />
           and expanded into graphic, web, UX design,<br className='max-[430px]:block hidden' />
           and development.
         </p>
