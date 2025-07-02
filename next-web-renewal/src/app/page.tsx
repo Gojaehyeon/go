@@ -76,15 +76,15 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center gap-16 py-16">
       {/* App icons row */}
-      <div className="flex flex-row flex-wrap justify-center gap-8 mb-6">
+      <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-8 mb-6 w-full max-w-xs sm:max-w-none mx-auto">
         {imageIcons.slice(0, 5).map((img) => (
           <img
             key={img}
             src={`/images/${img}`}
             alt={img}
-            width={120}
-            height={120}
-            className="rounded-2xl shadow-md object-cover transition-transform duration-200 hover:scale-110"
+            width={80}
+            height={80}
+            className="rounded-2xl shadow-md object-cover transition-transform duration-75 hover:scale-110 w-16 h-16 sm:w-24 sm:h-24 mx-auto"
           />
         ))}
         <div className="w-full h-0" />
@@ -93,15 +93,15 @@ export default function Home() {
             key={img}
             src={`/images/${img}`}
             alt={img}
-            width={120}
-            height={120}
-            className="rounded-3xl shadow-md object-cover transition-transform duration-200 hover:scale-110"
+            width={80}
+            height={80}
+            className="rounded-3xl shadow-md object-cover transition-transform duration-75 hover:scale-110 w-16 h-16 sm:w-24 sm:h-24 mx-auto"
           />
         ))}
       </div>
 
       {/* Hero */}
-      <section className="flex flex-col items-center gap-4">
+      <section className="flex flex-col items-center gap-4 text-center w-full">
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-center">GO JAEHYUN</h1>
         <h2 className="text-xl sm:text-2xl text-blue-600 font-semibold mb-2">Experience Designer / Web, App Developer</h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-xl">
@@ -112,16 +112,16 @@ export default function Home() {
       </section>
 
       {/* Project cards section */}
-      <section className="w-full max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="w-full max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
         {apps.map((app, idx) => (
           <div
             key={app.name}
-            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-12 min-h-[320px] shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)]"
+            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-6 sm:p-12 min-h-[240px] sm:min-h-[320px] shadow-2xl transition-transform duration-75 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)] w-full max-w-xs sm:max-w-none mx-auto"
           >
             <img
               src={app.img}
               alt={app.name}
-              className={`w-32 h-32 object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'}`}
+              className={`w-20 h-20 sm:w-32 sm:h-32 object-cover mb-6 md:mb-0 md:mr-12 mx-auto ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'}`}
             />
             <div>
               <div className="text-3xl font-bold text-white mb-4">{app.name}</div>
