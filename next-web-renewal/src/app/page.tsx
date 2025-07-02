@@ -104,7 +104,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center gap-16 py-16">
       {/* App icons row */}
-      <div className="flex flex-row flex-wrap justify-center gap-8 max-[430px]:gap-1 mb-6 w-full max-w-none max-[430px]:max-w-xs max-[430px]:mx-1">
+      <div className="flex flex-row flex-wrap justify-center gap-8 max-[430px]:gap-1 max-[430px]:gap-y-4 mb-6 w-full max-w-none max-[430px]:max-w-xs max-[430px]:mx-1">
         {imageIcons.slice(0, 5).map((img) => (
           <img
             key={img}
@@ -112,7 +112,7 @@ export default function Home() {
             alt={img}
             width={120}
             height={120}
-            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-16 max-[430px]:h-16 max-[430px]:mx-auto rounded-2xl max-[430px]:rounded-xl"
+            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-2xl max-[430px]:rounded-xl"
           />
         ))}
         <div className="w-full h-0" />
@@ -123,7 +123,7 @@ export default function Home() {
             alt={img}
             width={120}
             height={120}
-            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-16 max-[430px]:h-16 max-[430px]:mx-auto rounded-3xl max-[430px]:rounded-xl"
+            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-3xl max-[430px]:rounded-xl"
           />
         ))}
       </div>
@@ -131,25 +131,28 @@ export default function Home() {
       {/* Hero */}
       <section className="flex flex-col items-center gap-4 text-center w-full">
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-center">GO JAEHYUN</h1>
-        <h2 className="text-xl sm:text-2xl text-blue-600 font-semibold mb-2">Experience Designer / Web, App Developer</h2>
+        <h2 className="text-xl sm:text-2xl text-blue-600 font-semibold mb-2">
+          Experience Designer /<span className='max-[430px]:block hidden'></span> Web, App Developer
+        </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-xl">
-          From furniture design to graphic, web, UX, and development.<br />
-          Designing the best experiences.<br />
-          Released 11 apps. Currently at Apple Developer Academy.
+          From furniture design to<br className='max-[430px]:block hidden' /> graphic, web, UX, and development.<br className='max-[430px]:block hidden' />
+          <span className='max-[430px]:block hidden'></span>Designing the best experiences.<br className='max-[430px]:block hidden' />
+          Released 11 apps.<br className='max-[430px]:block hidden' />
+          Currently at Apple Developer Academy.
         </p>
       </section>
 
       {/* Project cards section */}
-      <section className="w-full max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+      <section className="w-full max-w-screen-2xl mx-auto grid grid-cols-1 gap-8 justify-items-center">
         {apps.map((app, idx) => (
           <div
             key={app.name}
-            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-12 min-h-[320px] shadow-2xl transition-transform duration-75 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)] w-full max-w-xl max-[430px]:max-w-sm max-[430px]:mx-2 text-left max-[430px]:text-center"
+            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-12 min-h-[320px] shadow-2xl transition-transform duration-75 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)] w-full max-w-5xl max-[430px]:max-w-sm max-[430px]:mx-2 text-left max-[430px]:text-center"
           >
             <img
               src={app.img}
               alt={app.name}
-              className={`w-32 h-32 max-[430px]:w-20 max-[430px]:h-20 object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'} max-[430px]:mx-auto max-[430px]:rounded-xl`}
+              className={`w-32 h-32 max-[430px]:w-[72px] max-[430px]:h-[72px] object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'} max-[430px]:mx-auto max-[430px]:rounded-xl`}
             />
             <div className="text-left max-[430px]:text-center">
               <div className="text-3xl font-bold text-white mb-4">{app.name}</div>
