@@ -17,7 +17,7 @@ const imageIcons = [
 const apps = [
   {
     name: "BatteryGO",
-    desc: "A simple and beautiful battery status app for Mac. Monitor your battery health at a glance.",
+    desc: "A simple and beautiful battery status app for Mac. Monitor your battery status at a glance.",
     url: "https://apps.apple.com/us/app/batterygo/id6747229304?l=en-GB&mt=12",
     img: "/images/batterygo.png",
   },
