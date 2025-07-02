@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen text-gray-900 dark:text-gray-100">
         <GlassHeader />
-        <main className="w-full px-4 py-8 min-h-[80vh] mt-24">{children}</main>
+        <main className="w-full px-2 py-4 min-h-[70vh] mt-16 sm:px-4 sm:py-8 sm:min-h-[80vh] sm:mt-24">{children}</main>
       </body>
     </html>
   );
