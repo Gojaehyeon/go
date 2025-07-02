@@ -27,7 +27,7 @@ export default function GlassHeader() {
   return (
     <nav
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center gap-10 transition-all duration-300
-      ${scrolled ? "px-4 py-2 w-56" : "px-10 py-3 w-[400px] sm:w-[90vw] sm:max-w-xs"} backdrop-blur-md rounded-full border border-white/30 dark:border-black/30`}
+      ${scrolled ? "px-4 py-2 w-80" : "px-10 py-3 w-[400px] sm:w-[90vw] sm:max-w-xs"} backdrop-blur-md rounded-full border border-white/30 dark:border-black/30`}
       style={{ background: bgColor, boxShadow }}
     >
       <span className="text-2xl font-extrabold tracking-tight">GO</span>
