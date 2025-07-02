@@ -105,26 +105,28 @@ export default function Home() {
     <div className="flex flex-col items-center gap-16 py-16">
       {/* App icons row */}
       <div className="flex flex-row flex-wrap justify-center gap-8 max-[430px]:gap-1 max-[430px]:gap-y-4 mb-6 w-full max-w-none max-[430px]:max-w-xs max-[430px]:mx-1">
-        {imageIcons.slice(0, 5).map((img) => (
-          <img
-            key={img}
-            src={`/images/${img}`}
-            alt={img}
-            width={120}
-            height={120}
-            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-2xl max-[430px]:rounded-xl"
-          />
+        {imageIcons.slice(0, 5).map((img, i) => (
+          <a key={img} href={`#${apps[i].name.toLowerCase()}`}>
+            <img
+              src={`/images/${img}`}
+              alt={img}
+              width={120}
+              height={120}
+              className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-2xl max-[430px]:rounded-xl"
+            />
+          </a>
         ))}
         <div className="w-full h-0" />
-        {imageIcons.slice(5).map((img) => (
-          <img
-            key={img}
-            src={`/images/${img}`}
-            alt={img}
-            width={120}
-            height={120}
-            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-3xl max-[430px]:rounded-xl"
-          />
+        {imageIcons.slice(5).map((img, j) => (
+          <a key={img} href={`#${apps[j+5].name.toLowerCase()}`}>
+            <img
+              src={`/images/${img}`}
+              alt={img}
+              width={120}
+              height={120}
+              className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-3xl max-[430px]:rounded-xl"
+            />
+          </a>
         ))}
       </div>
 
@@ -147,6 +149,7 @@ export default function Home() {
         {apps.map((app, idx) => (
           <div
             key={app.name}
+            id={app.name.toLowerCase()}
             className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-12 min-h-[320px] shadow-2xl transition-transform duration-75 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)] w-full max-w-5xl max-[430px]:max-w-sm max-[430px]:mx-2 text-left max-[430px]:text-center"
           >
             <img
