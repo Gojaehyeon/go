@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FiUser, FiMail, FiBriefcase } from "react-icons/fi";
+import Link from "next/link";
 
 export default function GlassHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,15 +25,15 @@ export default function GlassHeader() {
       <span className="text-2xl font-extrabold tracking-tight">GO</span>
       {scrolled ? (
         <>
-          <a href="/" aria-label="Work" className="transition-transform duration-150 hover:scale-110"><FiBriefcase size={22} /></a>
-          <a href="/about" aria-label="About" className="transition-transform duration-150 hover:scale-110"><FiUser size={22} /></a>
-          <a href="/contact" aria-label="Contact" className="transition-transform duration-150 hover:scale-110"><FiMail size={22} /></a>
+          <Link href="/" aria-label="Work" className="transition-transform duration-150 hover:scale-110"><FiBriefcase size={22} /></Link>
+          <Link href="/about" aria-label="About" className="transition-transform duration-150 hover:scale-110"><FiUser size={22} /></Link>
+          <Link href="/contact" aria-label="Contact" className="transition-transform duration-150 hover:scale-110"><FiMail size={22} /></Link>
         </>
       ) : (
         <>
-          <a href="/" className="text-lg font-medium hover:text-blue-600 transition">Work</a>
-          <a href="/about" className="text-lg font-medium hover:text-blue-600 transition">About</a>
-          <a href="/contact" className="text-lg font-medium hover:text-blue-600 transition">Contact</a>
+          <Link href="/" className="text-lg font-medium hover:text-blue-600 transition">Work</Link>
+          <Link href="/about" className="text-lg font-medium hover:text-blue-600 transition">About</Link>
+          <Link href="/contact" className="text-lg font-medium hover:text-blue-600 transition">Contact</Link>
         </>
       )}
     </nav>
