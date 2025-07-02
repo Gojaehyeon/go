@@ -1,4 +1,6 @@
-import Image from "next/image";
+"use client";
+
+import React from 'react';
 
 const imageIcons = [
   "batterygo.png",
@@ -15,7 +17,7 @@ const imageIcons = [
 const apps = [
   {
     name: "BatteryGO",
-    desc: "A simple and beautiful battery status app for Mac. Monitor your battery health at a glance.",
+    desc: "A simple and beautiful battery status app for Mac. Monitor your battery status at a glance.",
     url: "https://apps.apple.com/us/app/batterygo/id6747229304?l=en-GB&mt=12",
     img: "/images/batterygo.png",
   },
@@ -76,7 +78,7 @@ export default function Home() {
       {/* App icons row */}
       <div className="flex flex-row flex-wrap justify-center gap-8 mb-6">
         {imageIcons.slice(0, 5).map((img) => (
-          <Image
+          <img
             key={img}
             src={`/images/${img}`}
             alt={img}
@@ -87,7 +89,7 @@ export default function Home() {
         ))}
         <div className="w-full h-0" />
         {imageIcons.slice(5).map((img) => (
-          <Image
+          <img
             key={img}
             src={`/images/${img}`}
             alt={img}
@@ -124,81 +126,11 @@ export default function Home() {
             <div>
               <div className="text-3xl font-bold text-white mb-4">{app.name}</div>
               <div className="text-gray-300 text-xl mb-4">{app.desc}</div>
-              {(() => {
-                // Product Hunt badge info for each Mac app
-                const productHuntBadges = {
-                  BatteryGO: {
-                    url: "https://www.producthunt.com/products/batterygo?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-batterygo",
-                    img: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=979356&theme=light&t=1751368799554",
-                  },
-                  ClipGO: {
-                    url: "https://www.producthunt.com/products/clipgo?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-clipgo",
-                    img: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=982357&theme=light&t=1751368772345",
-                  },
-                  DisplayGO: {
-                    url: "https://www.producthunt.com/products/displaygo?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-displaygo",
-                    img: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=973288&theme=light&t=1751368819035",
-                  },
-                  FolderGO: {
-                    url: "https://www.producthunt.com/products/foldergo?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-foldergo",
-                    img: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=984032&theme=light&t=1751368670454",
-                  },
-                  ShareGO: {
-                    url: "https://www.producthunt.com/products/sharego?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-sharego",
-                    img: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=985049&theme=light&t=1751367718007",
-                  },
-                } as const;
-                type BadgeKey = keyof typeof productHuntBadges;
-                if ((app.name as BadgeKey) in productHuntBadges) {
-                  const badge = productHuntBadges[app.name as BadgeKey];
-                  return (
-                    <div className="flex items-center gap-4">
-                      <a href={app.url} target="_blank" rel="noopener noreferrer">
-                        <img
-                          src="/svg/Download_on_the_Mac_App_Store_Badge_US-UK_RGB_blk_092917.svg"
-                          alt="Download on the Mac App Store"
-                          className="h-10 w-auto object-contain"
-                        />
-                      </a>
-                      <a
-                        href={badge.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          src={badge.img}
-                          alt={`${app.name} on Product Hunt`}
-                          className="h-10 w-auto object-contain"
-                        />
-                      </a>
-                    </div>
-                  );
-                } else if (idx < apps.length - 4) {
-                  return (
-                    <a href={app.url} target="_blank" rel="noopener noreferrer">
-                      <img
-                        src="/svg/Download_on_the_Mac_App_Store_Badge_US-UK_RGB_blk_092917.svg"
-                        alt="Download on the Mac App Store"
-                        className="h-10 w-auto object-contain"
-                      />
-                    </a>
-                  );
-                } else {
-                  return (
-                    <a href={app.url} target="_blank" rel="noopener noreferrer">
-                      <img
-                        src="/svg/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
-                        alt="Download on the App Store"
-                        className="h-10 w-auto object-contain"
-                      />
-                    </a>
-                  );
-                }
-              })()}
+              {/* App Store/Product Hunt badges can be added here if needed */}
             </div>
           </div>
         ))}
       </section>
     </div>
   );
-}
+} 
