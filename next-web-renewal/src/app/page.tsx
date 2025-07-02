@@ -104,7 +104,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center gap-16 py-16">
       {/* App icons row */}
-      <div className="flex flex-row flex-wrap justify-center gap-8 max-[430px]:gap-1 max-[430px]:gap-y-4 mb-6 w-full max-w-none max-[430px]:max-w-xs max-[430px]:mx-1">
+      <div className="flex flex-row flex-wrap justify-center gap-8 max-[430px]:gap-3 max-[430px]:gap-y-4 mb-6 w-full max-w-none">
         {imageIcons.slice(0, 5).map((img, i) => (
           <a key={img} href={`#${apps[i].name.toLowerCase()}`}>
             <img
