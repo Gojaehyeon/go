@@ -20,30 +20,50 @@ const apps = [
     desc: "A simple and beautiful battery status app for Mac. Monitor your battery status at a glance.",
     url: "https://apps.apple.com/us/app/batterygo/id6747229304?l=en-GB&mt=12",
     img: "/images/batterygo.png",
+    storeBadge: "/svg/Download_on_the_Mac_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    phBadge: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=979356&theme=light&t=1751368799554",
+    phAlt: "BatteryGO on Product Hunt",
+    storeAlt: "Download on the Mac App Store",
   },
   {
     name: "ClipGO",
     desc: "A smart clipboard manager that helps you organize and quickly access your copied items.",
     url: "https://apps.apple.com/kr/app/clipgo/idYOUR_APP_ID",
     img: "/images/clipgo.png",
+    storeBadge: "/svg/Download_on_the_Mac_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    phBadge: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=982357&theme=light&t=1751368772345",
+    phAlt: "ClipGO on Product Hunt",
+    storeAlt: "Download on the Mac App Store",
   },
   {
     name: "DisplayGO",
     desc: "A display management tool for Mac. Easily control and arrange your external displays.",
     url: "https://apps.apple.com/kr/app/displaygo/id6746069948?l=en-GB&mt=12",
     img: "/images/displaygo.png",
+    storeBadge: "/svg/Download_on_the_Mac_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    phBadge: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=973288&theme=light&t=1751368819035",
+    phAlt: "DisplayGO on Product Hunt",
+    storeAlt: "Download on the Mac App Store",
   },
   {
     name: "FolderGO",
     desc: "Organize and manage your folders efficiently on Mac with FolderGO.",
     url: "https://apps.apple.com/kr/app/foldergo/id6747735485?l=en-GB&mt=12",
     img: "/images/foldergo.png",
+    storeBadge: "/svg/Download_on_the_Mac_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    phBadge: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=984032&theme=light&t=1751368670454",
+    phAlt: "FolderGO on Product Hunt",
+    storeAlt: "Download on the Mac App Store",
   },
   {
     name: "ShareGO",
     desc: "A seamless sharing utility to quickly send files and links between your devices.",
     url: "https://apps.apple.com/kr/app/sharego/idYOUR_APP_ID",
     img: "/images/sharego.png",
+    storeBadge: "/svg/Download_on_the_Mac_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    phBadge: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=985049&theme=light&t=1751367718007",
+    phAlt: "ShareGO on Product Hunt",
+    storeAlt: "Download on the Mac App Store",
   },
   // iOS Apps
   {
@@ -51,24 +71,32 @@ const apps = [
     desc: "Minimal video camera for quick retakes. Instantly save or retake with a simple UI.",
     url: "https://apps.apple.com/kr/app/takeagain/id6745813619?l=en-GB",
     img: "/images/takeagain.jpg",
+    storeBadge: "/svg/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    storeAlt: "Download on the App Store",
   },
   {
     name: "Dodot",
     desc: "Goal-based routine & to-do manager. Build habits and track your progress.",
     url: "https://apps.apple.com/kr/app/%EB%91%90%EB%8B%B7/id6744737392?l=en-GB",
     img: "/images/dodot.png",
+    storeBadge: "/svg/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    storeAlt: "Download on the App Store",
   },
   {
     name: "LetGo",
     desc: "Minimal writing app for building a writing habit. Distraction-free and easy to use.",
     url: "https://apps.apple.com/kr/app/letgo/id6746320131?l=en-GB",
     img: "/images/letgo.jpg",
+    storeBadge: "/svg/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    storeAlt: "Download on the App Store",
   },
   {
     name: "RefreshGO",
     desc: "Wellness app to refresh your mind and body. Track routines and build healthy habits.",
     url: "https://apps.apple.com/kr/app/refreshgo/id6745421205?l=en-GB",
     img: "/images/refreshgo.jpg",
+    storeBadge: "/svg/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg",
+    storeAlt: "Download on the App Store",
   },
 ];
 
@@ -126,7 +154,16 @@ export default function Home() {
             <div>
               <div className="text-3xl font-bold text-white mb-4">{app.name}</div>
               <div className="text-gray-300 text-xl mb-4">{app.desc}</div>
-              {/* App Store/Product Hunt badges can be added here if needed */}
+              <div className="flex flex-wrap items-center gap-3 mt-4">
+                <a href={app.url} target="_blank" rel="noopener noreferrer">
+                  <img src={app.storeBadge} alt={app.storeAlt} className="h-8 sm:h-10 w-auto object-contain" />
+                </a>
+                {app.phBadge && (
+                  <a href={`https://www.producthunt.com/products/${app.name.toLowerCase()}?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-${app.name.toLowerCase()}`} target="_blank" rel="noopener noreferrer">
+                    <img src={app.phBadge} alt={app.phAlt} className="h-8 sm:h-10 w-auto object-contain" />
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         ))}
