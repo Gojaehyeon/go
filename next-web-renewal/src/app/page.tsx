@@ -112,7 +112,7 @@ export default function Home() {
               alt={img}
               width={120}
               height={120}
-              className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-2xl max-[430px]:rounded-xl"
+              className="shadow-none dark:shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-2xl max-[430px]:rounded-xl"
             />
           </a>
         ))}
@@ -124,7 +124,7 @@ export default function Home() {
               alt={img}
               width={120}
               height={120}
-              className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-3xl max-[430px]:rounded-xl"
+              className="shadow-none dark:shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-[60px] max-[430px]:h-[60px] max-[430px]:mx-auto rounded-3xl max-[430px]:rounded-xl"
             />
           </a>
         ))}
