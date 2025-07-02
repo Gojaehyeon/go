@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { FiUser, FiMail, FiBriefcase } from "react-icons/fi";
 import Link from "next/link";
+import ProgressDonut from "./ProgressDonut";
 
 export default function GlassHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,7 +27,7 @@ export default function GlassHeader() {
 
   return (
     <nav
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center gap-10 transition-all duration-300
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center gap-8 transition-all duration-300
       ${scrolled ? "px-4 py-2 w-80" : "px-10 py-3 w-[400px] sm:w-[90vw] sm:max-w-xs"} backdrop-blur-md rounded-full border border-white/30 dark:border-black/30`}
       style={{ background: bgColor, boxShadow }}
     >
@@ -35,7 +36,12 @@ export default function GlassHeader() {
         <>
           <Link href="/" aria-label="Work" className="transition-transform duration-150 hover:scale-110"><FiBriefcase size={22} /></Link>
           <Link href="/about" aria-label="About" className="transition-transform duration-150 hover:scale-110"><FiUser size={22} /></Link>
-          <Link href="/contact" aria-label="Contact" className="transition-transform duration-150 hover:scale-110"><FiMail size={22} /></Link>
+          <span className="relative flex items-center">
+            <Link href="/contact" aria-label="Contact" className="transition-transform duration-150 hover:scale-110"><FiMail size={22} /></Link>
+            <span className="ml-8 flex items-center">
+              <ProgressDonut progress={Math.min(scrollY / (document.body.scrollHeight - window.innerHeight), 1)} size={20} strokeWidth={4} />
+            </span>
+          </span>
         </>
       ) : (
         <>
