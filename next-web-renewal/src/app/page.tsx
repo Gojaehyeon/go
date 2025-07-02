@@ -104,7 +104,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center gap-16 py-16">
       {/* App icons row */}
-      <div className="flex flex-row flex-wrap justify-center gap-8 max-[430px]:gap-2 mb-6 w-full max-w-none max-[430px]:max-w-xs max-[430px]:mx-auto">
+      <div className="flex flex-row flex-wrap justify-center gap-8 max-[430px]:gap-1 mb-6 w-full max-w-none max-[430px]:max-w-xs max-[430px]:mx-auto">
         {imageIcons.slice(0, 5).map((img) => (
           <img
             key={img}
@@ -112,7 +112,7 @@ export default function Home() {
             alt={img}
             width={120}
             height={120}
-            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-14 max-[430px]:h-14 max-[430px]:mx-auto rounded-2xl max-[430px]:rounded-xl"
+            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-16 max-[430px]:h-16 max-[430px]:mx-auto rounded-2xl max-[430px]:rounded-xl"
           />
         ))}
         <div className="w-full h-0" />
@@ -123,7 +123,7 @@ export default function Home() {
             alt={img}
             width={120}
             height={120}
-            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-14 max-[430px]:h-14 max-[430px]:mx-auto rounded-3xl max-[430px]:rounded-xl"
+            className="shadow-md object-cover transition-transform duration-75 hover:scale-110 w-32 h-32 max-[430px]:w-16 max-[430px]:h-16 max-[430px]:mx-auto rounded-3xl max-[430px]:rounded-xl"
           />
         ))}
       </div>
@@ -144,23 +144,23 @@ export default function Home() {
         {apps.map((app, idx) => (
           <div
             key={app.name}
-            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-12 min-h-[320px] shadow-2xl transition-transform duration-75 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)] w-full max-w-none max-[430px]:max-w-sm max-[430px]:mx-2 text-left max-[430px]:text-center"
+            className="flex flex-col md:flex-row items-center bg-[#181818] rounded-3xl p-12 min-h-[320px] shadow-2xl transition-transform duration-75 hover:scale-105 hover:bg-[#232323] group hover:shadow-[0_0_60px_0_rgba(255,255,255,0.15)] w-full max-w-xl max-[430px]:max-w-sm max-[430px]:mx-2 text-left max-[430px]:text-center"
           >
             <img
               src={app.img}
               alt={app.name}
-              className={`w-32 h-32 max-[430px]:w-16 max-[430px]:h-16 object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'} max-[430px]:mx-auto max-[430px]:rounded-xl`}
+              className={`w-32 h-32 max-[430px]:w-20 max-[430px]:h-20 object-cover mb-6 md:mb-0 md:mr-12 ${idx >= apps.length - 4 ? 'rounded-3xl' : 'rounded-2xl'} max-[430px]:mx-auto max-[430px]:rounded-xl`}
             />
             <div>
               <div className="text-3xl font-bold text-white mb-4">{app.name}</div>
-              <div className="text-gray-300 text-xl mb-4">{app.desc}</div>
-              <div className="flex flex-nowrap items-center gap-3 mt-4 justify-center max-[430px]:justify-center">
+              <div className="text-gray-300 text-xl mb-4 max-[430px]:px-2">{app.desc}</div>
+              <div className="flex flex-nowrap items-center gap-3 mt-4 justify-start max-[430px]:justify-center">
                 <a href={app.url} target="_blank" rel="noopener noreferrer">
-                  <img src={app.storeBadge} alt={app.storeAlt} className="h-8 sm:h-10 w-auto object-contain" />
+                  <img src={app.storeBadge} alt={app.storeAlt} className="h-8 sm:h-10 max-[430px]:h-10 w-auto object-contain" />
                 </a>
                 {app.phBadge && (
                   <a href={`https://www.producthunt.com/products/${app.name.toLowerCase()}?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-${app.name.toLowerCase()}`} target="_blank" rel="noopener noreferrer">
-                    <img src={app.phBadge} alt={app.phAlt} className="h-8 sm:h-10 w-auto object-contain" />
+                    <img src={app.phBadge} alt={app.phAlt} className="h-8 sm:h-10 max-[430px]:h-10 w-auto object-contain" />
                   </a>
                 )}
               </div>
