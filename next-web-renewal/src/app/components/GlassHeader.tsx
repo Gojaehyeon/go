@@ -7,8 +7,13 @@ import ProgressDonut from "./ProgressDonut";
 export default function GlassHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [isDark, setIsDark] = useState(false); // 초기값 false로 고정
 
   useEffect(() => {
+    // 클라이언트에서만 다크모드 체크
+    if (window.matchMedia) {
+      setIsDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
       setScrollY(window.scrollY);
@@ -19,7 +24,6 @@ export default function GlassHeader() {
 
   const alpha = Math.min(scrollY / 20, 1) * 0.4;
   const shadowAlpha = Math.min(scrollY / 20, 1) * 0.12;
-  const isDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   const bgColor = isDark
     ? `rgba(34,34,34,${alpha})`
     : `rgba(255,255,255,${alpha})`;
