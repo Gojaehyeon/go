@@ -133,7 +133,7 @@ export default function Home() {
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
       {/* 인트로 화면: 모바일에서는 렌더링하지 않음 */}
-      {(!isMobile && showIntro) && (
+      {!isMobile && showIntro ? (
         <div
           style={{
             position: 'fixed',
@@ -178,7 +178,7 @@ export default function Home() {
                 transform: fadeOut ? 'scale(0.85)' : 'scale(1)',
               }}
             >
-              {imageIcons.slice(0, 5).map((img, i) => (
+              {imageIcons.slice(0, 5).map((img) => (
                 <img
                   key={img}
                   src={`/images/${img}`}
@@ -200,7 +200,7 @@ export default function Home() {
                 transform: fadeOut ? 'scale(0.85)' : 'scale(1)',
               }}
             >
-              {imageIcons.slice(5).map((img, j) => (
+              {imageIcons.slice(5).map((img) => (
                 <img
                   key={img}
                   src={`/images/${img}`}
@@ -213,7 +213,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
       {/* 메인 UI */}
       <div
         style={{
