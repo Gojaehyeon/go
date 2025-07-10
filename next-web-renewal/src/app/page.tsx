@@ -129,6 +129,11 @@ export default function Home() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // 모바일에서는 인트로를 아예 건너뜀
+  useEffect(() => {
+    if (isMobile) setShowIntro(false);
+  }, [isMobile]);
+
   // 인트로와 메인 UI를 겹쳐서 렌더링
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>

@@ -1,6 +1,5 @@
 import "./globals.css";
 import GlassHeader from "./components/GlassHeader";
-import { ReactElement } from "react";
 
 export const metadata = {
   title: "GO | Go Jaehyun Portfolio",
@@ -8,8 +7,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // children에서 showHeader prop을 안전하게 받아옴
-  const showHeader = typeof children === 'object' && children !== null && 'props' in children && (children as any).props?.showHeader !== false;
+  // children에서 showHeader prop을 안전하게 받아옴 (any 사용하지 않음)
+  const showHeader = typeof children === 'object' && children !== null && 'props' in children && (children.props as { showHeader?: boolean })?.showHeader !== false;
   return (
     <html lang="en">
       <body className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen text-gray-900 dark:text-gray-100">
